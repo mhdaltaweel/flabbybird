@@ -1,10 +1,10 @@
 CC = gcc
-CFLAGS = -W -Wall -ansi -std=c99 -g -Wunused-parameter
+CFLAGS = -W -Wall -ansi -std=c99 -g
 LIBS = -L./SDL2_ttf/.libs -L./SDL2_image/.libs
-LDFLAGS = `sdl2-config --cflags --libs -SDL2_ttf -lSDL2_image`
+LDFLAGS =`sdl2-config --cflags --libs -lSDL2_ttf -lSDL2_image`
 INCLUDES = -I./SDL2_ttf -I./SDL2_image
 EXEC = main
-SRC = main.c fonctions_SDL.c
+SRC = main.c fonctions_fichiers.c test.c fonctions_SDL.c
 OBJ = $(SRC:.c=.o)
 
 all: $(EXEC)
