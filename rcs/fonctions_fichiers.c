@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "fonctions_fichiers.h"
+#include <SDL2/SDL.h>
+#include "fonctions_SDL.h"
 
 char** allouer_tab_2D(int n, int m){
 	char ** tab;
@@ -159,7 +161,8 @@ char** lire_fichier(const char* nomFichier){
 		int nbLig=0,nbCol=0;
 		taille_fichier(nomFichier,&nbLig,&nbCol);
 		int maxChar = nbLig * nbCol;
-		char ch[maxChar];
+		char* ch;
+		ch=malloc(maxChar*sizeof(char));
 		char** tab = allouer_tab_2D(nbLig,nbCol);
 		int i = 0;
 		while(fgets(ch, maxChar, fichier) != NULL){
@@ -170,14 +173,15 @@ char** lire_fichier(const char* nomFichier){
 			}
 			i++;
 		}
-
+		free(ch);
 		fclose(fichier);
 		return tab;
 	}
 }
 
 
-/********************************ex 2*******************************************/
+
+/***************************************************************************/
 
 char** modifier_caractere(char** tab, int n, int m, char ancien, char
 nouveau){
@@ -203,16 +207,53 @@ void ecrire_fichier(const char* nomFichier, char** tab, int n, int m){
     fclose(fichier);
 }
 
+/*void trier_tab(piece_t *p){
+	int tmp;
+	for(int i=0;i<12;i++){
+		for(int j=0;j<(12-i);j++){
+			if(p.tab[j].y==p.tab[j+1].y && p.tab[j].x>p.tab[j+1].x){
+				tmp=p.tab[j];
+				p.tab[j]=p.tab[j+1];
+				p.tab[j+1]=tmp;
+			}else if(p.tab[j].y>p.tab[j+1].y){
+				tmp=p.tab[j];
+				p.tab[j]=p.tab[j+1];
+				p.tab[j+1]=tmp;
+			}
+		}
+	}
+}*/
 
-
-
-
-
-
-
-
-
-
+/*
+void liaisonSprite(SDL_Rect* Destr, char** tab, int m, int k,SDL_Renderer* renderer, SDL_Texture* texture, int x, int y){
+	int j, i; 
+	i = k % m;
+	j = k/4;
+	if(tab[i+1][j]=='#'){
+		Destr[k+1].x=x+Destr[k+1].w;
+		Destr[k+1].y=y+Destr[k+1].h;
+		SDL_RenderCopy(renderer, texture, NULL, &Destr[k+1]);
+		liaisonSprite(Destr, tab, m, k+1,renderer, texture, x,y);
+	}
+	if(tab[i-1][j]=='#'){
+		Destr[k-1].x=x-Destr[k-1].w;
+		Destr[k-1].y=y-Destr[k-1].h;
+		SDL_RenderCopy(renderer, texture, NULL, &Destr[k-1]);
+		liaisonSprite(Destr, tab, m, k-1,renderer, texture,x,y);
+	}
+	if(tab[i][j+1]=='#'){
+		Destr[k+m].x=x+Destr[k+m].w;
+		Destr[k+m].y=y+Destr[k+m].h;
+		SDL_RenderCopy(renderer, texture, NULL, &Destr[k+m]);
+		liaisonSprite(Destr, tab, m, k+m,renderer, texture,x,y);
+	}
+	if(tab[i][j-1]=='#'){
+		Destr[k-m].x=x-Destr[k-m].w;
+		Destr[k-m].y=y-Destr[k-m].h;
+		SDL_RenderCopy(renderer, texture, NULL, &Destr[k-m]);
+		liaisonSprite(Destr, tab, m, k-m,renderer, texture,x,y);
+	}
+}*/
 
 
 

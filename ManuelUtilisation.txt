@@ -1,0 +1,12 @@
+								Manuel d'utilisation du pentomino
+
+Compiler et exécuter le programme : 
+	-make
+	-./main
+
+Lancer une partie : 
+	-Cliquez sur le bouton "jouer";
+	-Le chronomètre se lance, remplissez le plateau avec toutes les pièces;
+	-Cliquez sur une pièce pour la saisir et la déplacer;
+	-Appuyer sur espace permet la rotation à 90° d'une pièce (la souris doit se trouver sur la pièce concernée);
+	-Quittez le jeu en appuyant sur Echap;
